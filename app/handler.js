@@ -70,12 +70,12 @@ class Handler {
 
     static generateImagePath() {
         const isLocal = process.env.IS_LOCAL
-        return `${isLocal ? "" : "/tmp/"}${new Date().getTime()}-out.png`
+        return `/tmp/${new Date().getTime()}-out.png`
       }
 
     static setTextPosition(dimensions, padding) {
-        const top = Math.abs((dimensions.height / 2.1) - padding) * -1;
-        const bottom = (dimensions.height / 2.1) - padding;
+        const top = Math.abs((dimensions.height / 2.3) - padding) * -1;
+        const bottom = (dimensions.height / 2.3) - padding;
         return { top, bottom };
     }
 
@@ -109,7 +109,7 @@ class Handler {
 
             const { top, bottom } = Handler.setTextPosition(dimensions, params.padding);
             const finalPath = Handler.generateImagePath();
-            const command = await Handler.generateConvertCommand({
+            await Handler.generateConvertCommand({
                 ...params,
                 top,
                 bottom
